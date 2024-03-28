@@ -1,5 +1,5 @@
 const listData = [];
-for (let index = 0; index <= 5000; index++) {
+for (let index = 0; index <= 1000; index++) {
   listData.push({
     id: index.toString(),
     urlImage:
