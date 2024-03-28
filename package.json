@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Back end de uso general",
   "main": "index.js",
+  "homepage": "https://general-express-server.vercel.app",
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js"
