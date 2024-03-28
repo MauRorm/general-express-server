@@ -4,8 +4,8 @@
   "description": "Back end de uso general",
   "main": "index.js",
   "scripts": {
-    "start": "node api/index.js",
-    "server": "nodemon api/index.js"
+    "start": "node app.js",
+    "server": "nodemon app.js"
   },
   "author": "",
   "license": "MIT",
