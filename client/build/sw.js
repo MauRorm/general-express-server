@@ -19,7 +19,7 @@ if (typeof importScripts === 'function') {
     /* workbox.precaching.precacheAndRoute([
   {
     "url": "index.html",
-    "revision": "d175ab530f9e2ebdce8add49c298919a"
+    "revision": "284e82ebbc556f72772719958b0bd4ff"
   },
   {
     "url": "logo192.png",
@@ -30,8 +30,8 @@ if (typeof importScripts === 'function') {
     "revision": "917515db74ea8d1aee6a246cfbcc0b45"
   },
   {
-    "url": "static/css/main.abe7bb7e.css",
-    "revision": "00b98ac500a6b9d077fd66da5a6d9751"
+    "url": "static/css/main.7cfa4757.css",
+    "revision": "3da23df6ecf37113e30211c45a3208d9"
   },
   {
     "url": "static/js/453.ff44c0d5.chunk.js",
@@ -110,7 +110,7 @@ self.addEventListener('install', async (e) => {
 
     
 self.addEventListener('fetch', (event) => {
-  if ( event.request.url.indexOf( '/api/' ) !== -1 || event.request.url.indexOf( '/cloudflare/' ) !== -1
+  if ( event.request.url.indexOf( 'css' ) || event.request.url.indexOf( '/api/' ) !== -1 || event.request.url.indexOf( '/cloudflare/' ) !== -1
   
   ) {
     return false;
