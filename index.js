@@ -23,12 +23,6 @@ app.use(cors({ credentials: true, origin: `http://localhost:3000` }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-/*
-app.use((req, res, next) => {
-  res.setHeader('Content-Security-Policy', "script-src 'self' https://apisegura.com");
-  next();
-});
-*/
 
 app.use(require('./api/routes/crud'));
 
