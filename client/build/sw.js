@@ -19,7 +19,7 @@ if (typeof importScripts === 'function') {
     /* workbox.precaching.precacheAndRoute([
   {
     "url": "index.html",
-    "revision": "34cef65f158e1a1ac76f115de75a38b3"
+    "revision": "ac1c8d8e1615deee0e65c679fe70af20"
   },
   {
     "url": "logo192.png",
@@ -30,8 +30,8 @@ if (typeof importScripts === 'function') {
     "revision": "917515db74ea8d1aee6a246cfbcc0b45"
   },
   {
-    "url": "static/css/main.3bc93c58.css",
-    "revision": "56f0a3bd6d87a5b1027fbcac38bb5072"
+    "url": "static/css/main.22953c42.css",
+    "revision": "ab79442b4930bbae8c61f1aee5d5ae4c"
   },
   {
     "url": "static/js/453.ff44c0d5.chunk.js",
