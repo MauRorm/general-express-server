@@ -1,16 +1,27 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-restricted-globals */
 
-const CACHE_NAME = 'crud-react';
+const CACHE_NAME = 'orion-fms-v3';
 const DATA_TO_CACHE = [
   '/',
+  '/static/js/',
+  '/manifest.json',
+  '/asset-manifest.json',
+  '/favicon.ico',
+  '/static/js/',
+  '/precache-manifest.0171df4de4bac7e7c69bcf914520d719.js',
+  '/static/',
+  '/assets/',
+  '/public/',
+  '/build/',
+  '/service-worker.js',
 ];
 if (typeof importScripts === 'function') {
   importScripts(
     'https://storage.googleapis.com/workbox-cdn/releases/3.5.0/workbox-sw.js',
   );
 
-  let versionServiceWorker = '0.5.0';
+  let versionServiceWorker = 'v.3.6.12';
 
   /* global workbox */
   if (workbox) {
@@ -19,7 +30,7 @@ if (typeof importScripts === 'function') {
     /* workbox.precaching.precacheAndRoute([
   {
     "url": "index.html",
-    "revision": "ac1c8d8e1615deee0e65c679fe70af20"
+    "revision": "df442419d61d1ff0dcfaace32acf2374"
   },
   {
     "url": "logo192.png",
@@ -30,8 +41,8 @@ if (typeof importScripts === 'function') {
     "revision": "917515db74ea8d1aee6a246cfbcc0b45"
   },
   {
-    "url": "static/css/main.22953c42.css",
-    "revision": "ab79442b4930bbae8c61f1aee5d5ae4c"
+    "url": "static/css/main.e34975f4.css",
+    "revision": "a8ae0582b26a2938860b682ee68bac5f"
   },
   {
     "url": "static/js/453.ff44c0d5.chunk.js",
@@ -108,19 +119,44 @@ self.addEventListener('install', async (e) => {
   }));
 });
 
+
+
+/*
+self.addEventListener('activate', (event) => {
+  self.clients.claim();
+  event.waitUntil(
+    caches.keys().then(function(keyList) {
+      return Promise.all(keyList.map(function(key) {
+        if (key !== CACHE_NAME) {
+          return caches.delete(key);
+        }
+      }));
+    }) 
+  );
+});
+*/
+
+
     
 self.addEventListener('fetch', (event) => {
-  if ( event.request.url.indexOf( 'css' ) || event.request.url.indexOf( '/api/' ) !== -1 || event.request.url.indexOf( '/cloudflare/' ) !== -1
+ console.log("dojedoijeoijd -0 ", event)
+  if ( event.request.url.indexOf( '/api/' ) !== -1 || event.request.url.indexOf( '/cloudflare/' ) !== -1
+  ||
+  event.request.url.indexOf('/api/whitebox/transaction/psp/chargeback/')
   
   ) {
     return false;
   }
   event.respondWith(
     caches.match(event.request, {cacheName:CACHE_NAME,ignoreVary:true}).then((response) => {
+      console.log("dojedoijeoijd 0 ", response)
       if (response) {
         return response;
       }
-      return fetch(event.request).then(responseOne => {
+      console.log("dojedoijeoijd 1 ", event.request.url)
+      if (/*event.request.url.indexOf('/api/') <= -1*/true === true) {
+        return fetch(event.request).then(responseOne => {
+         console.log("dojedoijeoijd 2 ", responseOne)
           caches.open(CACHE_NAME).then(cache => {
             if (
               event.request.method !== 'POST'
@@ -134,6 +170,9 @@ self.addEventListener('fetch', (event) => {
           })
           return responseOne.clone()
         })
+      } else {
+        return response;
+      }
 
 
 
@@ -142,7 +181,35 @@ self.addEventListener('fetch', (event) => {
 });
 
 
+/*
 self.addEventListener('activate', (event) => {
+
+  console.log('sw activate');
+  clients.claim();
+  self.clients.claim();
+  
+  event.waitUntil(
+    caches
+      .keys()
+      .then((keys) =>
+        Promise.all(
+          keys.map((key) => {
+            return caches.delete(key);
+          }),
+        ),
+      )
+      .then(() => {
+        console.log('V1 now ready to handle fetches!');
+      }),
+  );
+  
+  
+});
+*/
+
+self.addEventListener('activate', (event) => {
+  //clients.claim();
+  //self.clients.claim();
   event.waitUntil(
       caches.keys().then((cacheNames) => {
           return Promise.all(
