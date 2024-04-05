@@ -32,7 +32,6 @@ app.use(express.static(path.join(__dirname, './client/build')));
 
 // Luego, maneja cualquier otra ruta con index.html
 app.get('*', (req, res) => {
-  console.log("holooooo =============>   ",res)
   res.set("Cache-Control", "no-cache");
   res.sendFile(path.join(__dirname, './client/build', 'index.html'));
 });
