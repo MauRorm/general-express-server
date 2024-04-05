@@ -27,13 +27,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(require('./api/routes/crud'));
 
 
+// Sirve archivos estáticos primero
+app.use(express.static(path.join(__dirname, './client/build')));
 
-const root = require('path').join(__dirname, 'client', 'build')
-app.use(express.static(root));
-app.get("*", (req, res) => {
-    res.set("Cache-Control", "no-cache");
-    res.sendFile('index.html', { root });
+// Luego, maneja cualquier otra ruta con index.html
+app.get('*', (req, res) => {
+  res.set("Cache-Control", "no-cache");
+  res.sendFile(path.join(__dirname, './client/build', 'index.html'));
 });
+
+
 
 
 app.listen(port, () => console.log(`Servidor iniciado en el puerto ${port} ${process.env.BASE_URL}`))
