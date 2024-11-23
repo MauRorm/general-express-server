@@ -49,12 +49,12 @@ app.use(require('./api/routes/crud'));
 
 
 // Sirve archivos estáticos primero
-app.use(express.static(path.join(__dirname, './client/build')));
+app.use(express.static(path.join(__dirname, './client/public')));
 
 // Luego, maneja cualquier otra ruta con index.html
 app.get('*', (req, res) => {
   res.set("Cache-Control", "no-cache");
-  res.sendFile(path.join(__dirname, './client/build', 'index.html'));
+  res.sendFile(path.join(__dirname, './client/public', 'index.html'));
 });
 
 
