@@ -45,7 +45,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
-app.use(require('./api/routes/crud'));
 
 
 // Sirve archivos estáticos primero
